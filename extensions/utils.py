@@ -2,7 +2,7 @@ from . import jalali
 from django.utils import timezone
 
 
-def persian_number_converter(mystr):
+def persian_number_converter(my_str):
     numbers = {
         "0": "۰",
         "1": "۱",
@@ -15,9 +15,9 @@ def persian_number_converter(mystr):
         "8": "۸",
         "9": "۹"
     }
-    for e,p in numbers.items():
-        mystr = mystr.replace(e, p)
-    return mystr
+    for e, p in numbers.items():
+        my_str = my_str.replace(e, p)
+    return my_str
 
 
 def jalali_converter(time):
