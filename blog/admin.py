@@ -24,4 +24,5 @@ class ArticleAdmin(admin.ModelAdmin):
 
     category_to_str.short_description = "دسته بندی"
 
+
 admin.site.register(Article, ArticleAdmin)
