@@ -26,7 +26,7 @@
             <div class="post-preview">
                 <a href="{% url 'blog:detail' article.slug %}">
                     <h2 class="post-title">{{article.title}}</h2>
-                    <h3 class="post-subtitle">{{article.description|truncatewords:30}}</h3>
+                    <h3 class="post-subtitle">{{article.description|linebreaks|truncatewords:30}}</h3>
                 </a>
                 <p class="post-meta">
                     نوشته شده توسط
@@ -41,12 +41,12 @@
             </div>
             <!-- Divider-->
             <hr class="my-4"/>
-
             {% endfor %}
-
             <!-- Pager-->
-            <div class="d-flex justify-content-end mb-4 pager-botton"><a class="btn btn-primary text-uppercase"
-                                                                         href="#!">پست های قدیمی &larr;</a></div>
+            <div class="d-flex justify-content-end mb-4 pager-botton">
+                <a class="btn btn-primary ml-1" href="#!">پست های جدید&rarr;</a>
+                <a class="btn btn-primary ml-a" href="#!">پست های قدیمی &larr;</a>
+            </div>
         </div>
     </div>
 </div>
