@@ -4,7 +4,7 @@ from .models import Article, Category
 
 def home(request):
     context = {
-        "articles": Article.objects.filter(status='p')[:5],
+        "articles": Article.objects.published()
     }
     return render(request, 'blog/home.html', context)
 
