@@ -9,7 +9,14 @@ class ArticleManager(models.Manager):
         return self.filter(status='p')
 
 
+class CategoryManager(models.Manager):
+    def active(self):
+        return self.filter(status=True)
+
+
 class Category(models.Model):
+    parent = models.ForeignKey('self', null=True, default=None, blank=True
+                               , verbose_name='زیر دسته', on_delete=models.SET_NULL, related_name='children')
     title = models.CharField(max_length=200, verbose_name='عنوان دسته بندی')
     slug = models.SlugField(max_length=100, unique=True, verbose_name='آدرس دسته بندی')
     status = models.BooleanField(default=True, verbose_name='فعال')
@@ -22,6 +29,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.title
+    objects = CategoryManager()
 
 
 class Article(models.Model):

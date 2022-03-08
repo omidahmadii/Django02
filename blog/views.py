@@ -3,10 +3,9 @@ from django.shortcuts import render, get_object_or_404
 from .models import Article, Category
 
 
-def home(request):
+def home(request, page=1):
     article_list = Article.objects.published()
     paginator = Paginator(article_list, 2)  # Show 5 article per page.
-    page = request.GET.get('page')
     articles = paginator.get_page(page)
     context = {
         "articles": articles
@@ -21,8 +20,14 @@ def detail(request, slug):
     return render(request, 'blog/detail.html', context)
 
 
-def category(request, slug):
+def category(request, slug, page=1):
+    category = get_object_or_404(Category, slug=slug, status=True)
+    article_list = category.articles.published()
+    paginator = Paginator(article_list, 2)  # Show 5 article per page.
+    articles = paginator.get_page(page)
     context = {
-        'category': get_object_or_404(Category, slug=slug, status=True)
+
+        'articles': articles,
+        'category': category
     }
     return render(request, 'blog/category.html', context)
